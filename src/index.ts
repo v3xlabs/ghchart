@@ -3,6 +3,7 @@ import { config } from 'dotenv';
 import Express from 'express';
 import kleur from 'kleur';
 import NodeCache from 'node-cache';
+import cors from 'cors';
 
 import { getGithubContributions } from './graphql';
 
@@ -20,6 +21,7 @@ const log = createLogger(
 const cache = new NodeCache({ stdTTL: 60 * 5 });
 
 const app = Express();
+app.use(cors());
 
 (() => {
     const token = process.env.GH_TOKEN || '';
